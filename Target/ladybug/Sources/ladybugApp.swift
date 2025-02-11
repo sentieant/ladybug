@@ -1,10 +1,10 @@
 import SwiftUI
 
 @main
-struct TuistApp: App {
+struct ladybugApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("You will be the very best!")
         }
     }
 }
