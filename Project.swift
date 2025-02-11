@@ -8,8 +8,6 @@ private let iOSTargetVersion: String = "16.0"
 private let basePath: String = "Target/ladybug"
 
 let project = Project(name: "ladybug",
-                      packages: [],
-                      settings: Settings.settings(configurations: makeConfigurations()),
                       targets: [
                         Target(
                             name: "iOS",
@@ -18,30 +16,8 @@ let project = Project(name: "ladybug",
                             bundleId: bundleId,
                             deploymentTargets: .iOS(targetVersion: iOSTargetVersion, devices: .iphone),
                             infoPlist: makeInfoPlist(),
-                            sources: ["\(basePath)/Sources/**"]
+                            sources: ["\(basePath)/Sources/**"],
                             resources: ["\(basePath)/Resources/**"]
-                            settings: baseSettings()
                         )
-                      ],
-                      additionalFiles: [
-                        "README.md",
-                      ])
-
-private func makeInfoPlist(merging other: [String: InfoPlist: InfoPlist.Value] = [:] -> InfoPlist) {
-    var extendedPlist: [String: InfoPlist.Value] = [
-        "UIApplicationSceneManifest": ["UIApplicationSupportsMultipleScenes": true],
-        "UILaunchScreen": [],
-        "UISupportedInterfaceOrientation":
-            [
-                "UIInterfaceOrientationPortrait",
-            ],
-        "CFBundleShortVersionString": "\(version)",
-        "CFBundleVersion": "\(bundleversion)",
-        "CFBundleDisplayName": "ladybug"
-    ]
-    
-    other.forEach { (key: String, value: InfoPlist.Value) in
-        extendedPlist[key] = value
-        
-    }
-}
+                      ]
+)
