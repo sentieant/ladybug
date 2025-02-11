@@ -7,6 +7,7 @@ private let iOSTargetVersion: String = "16.0"
 private let basePath: String = "Target/ladybug"
 private let appName: String = "ladybug"
 
+// Target setup
 private let ladybug = Target.target(
     name: appName,
     destinations: [.iPhone],
@@ -17,6 +18,7 @@ private let ladybug = Target.target(
     resources: ["\(basePath)/Resources/**"]
 )
 
+// Project setup
 let project = Project(
     name: appName,
     targets: [
@@ -24,6 +26,7 @@ let project = Project(
     ]
 )
 
+// extending the plist
 private func makeInfoPlist() -> InfoPlist {
     return .dictionary([
         "CFBundleDisplayName": .string(appName),
