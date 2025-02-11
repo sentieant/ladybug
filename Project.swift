@@ -33,6 +33,7 @@ private func makeInfoPlist() -> InfoPlist {
         "CFBundleIdentifier": .string(bundleId),
         "CFBundleShortVersionString": .string(version),
         "CFBundleVersion": .string(bundleVersion),
+        "CFBundleExecutable": .string(appName),
         "MinimumOSVersion": .string(iOSTargetVersion),
         "UILaunchStoryboardName": .string("LaunchScreen"),
         "LSRequiresIPhoneOS": .boolean(true),
