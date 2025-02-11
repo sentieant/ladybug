@@ -45,4 +45,6 @@ private func makeInfoPlist() -> InfoPlist {
     ])
 }
 
+// I am not writing dev and release configurations as of now
+
 
