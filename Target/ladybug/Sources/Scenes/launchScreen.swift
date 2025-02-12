@@ -2,6 +2,7 @@ import SwiftUI
 
 struct launchScreenView: View {
    
+    @State private var isBlinking: Bool = false
     var body: some View {
             NavigationView {
                 VStack{
@@ -16,6 +17,14 @@ struct launchScreenView: View {
                     NavigationLink(destination: homeScreenView()){
                             Text("Let's be organsied!")
                         }
+                    .opacity(isBlinking ? 0.1 : 1.2)
+                    .animation(
+                        Animation.easeInOut(duration: 1.2).repeatForever(autoreverses: true),
+                               value: isBlinking
+                    )
+                    .onAppear(){
+                        isBlinking.toggle()
+                    }
                         .padding()
                         .background(Color.clear)
                         .foregroundColor(.black)
