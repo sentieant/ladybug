@@ -4,7 +4,10 @@ import SwiftUI
 struct ladybugApp: App {
     var body: some Scene {
         WindowGroup {
-            launchScreenView()
+            ZStack{
+                launchScreenView()
+            }
+            
     }
     }
 }
