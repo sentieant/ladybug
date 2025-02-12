@@ -45,7 +45,8 @@ private func makeInfoPlist() -> InfoPlist {
             .string("UIInterfaceOrientationLandscapeRight")
         ]),
         "NSCameraUsageDescription": .string("Ladybug requires access to the camera to capture photos."),
-        "NSLocationWhenInUseUsageDescription": .string("Ladybug needs your location to provide personalized content.")
+        "NSLocationWhenInUseUsageDescription": .string("Ladybug needs your location to provide personalized content."),
+        "UIAppFonts": .array(["Lobster-Regular.ttf"])
     ])
 }
 
