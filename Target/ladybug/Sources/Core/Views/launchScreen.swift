@@ -14,8 +14,8 @@ struct launchScreenView: View {
                         .shadow(radius: 15)
                         .padding()
                         .font(.custom("Lobster-Regular", size: 30))
-                    NavigationLink(destination: homeScreenView()){
-                            Text("Let's be organsied!")
+                    NavigationLink(destination: calendarScreenView()){
+                            Text("Let's be organised!")
                         }
                     .opacity(isBlinking ? 0.1 : 1.2)
                     .animation(

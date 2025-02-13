@@ -7,13 +7,12 @@ struct ladybugApp: App {
             ZStack{
                 launchScreenView()
             }
-            
     }
     }
 }
 
 #Preview{
-    launchScreenView()
+    calendarScreenView()
 }
 
 
