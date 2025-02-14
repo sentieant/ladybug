@@ -41,15 +41,31 @@
 
 import SwiftUI
 
+protocol CalendarDataSource {
+    func getCalendarData() -> [(day: String, date: String, event: String)]
+}
+
+protocol CalendarDelegate {
+    func didSelectDate(date: String)
+}
+
+class CalendarManager: CalendarDataSource {
+    
+    func getCalendarData() -> [(day: String, date: String, event: String)] {
+        return [
+            ("Monday", "12", "Meeting"),
+            ("Tuesday", "13", "Workout"),
+            ("Wednesday", "14", "Project Deadline"),
+            ("Thursday", "15", "Dinner with Friends"),
+            ("Friday", "16", "Flight to NYC")
+        ]
+    }
+}
+
 struct calendarScreenView: View {
     
-    let calendarData: [(day: String, date: String, event: String)] = [
-        ("Monday", "12", "Meeting"),
-        ("Tuesday", "13", "Workout"),
-        ("Wednesday", "14", "Project Deadline"),
-        ("Thursday", "15", "Dinner with Friends"),
-        ("Friday", "16", "Flight to NYC")
-    ]
+    let dataSource: CalendarDataSource
+    let delegate: CalendarDelegate?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -73,6 +89,7 @@ struct calendarScreenView: View {
             
             VStack(spacing: 0) {
                 
+                // 🟡 Month Header
                 Text("Month")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
@@ -97,7 +114,7 @@ struct calendarScreenView: View {
                 .padding()
                 .border(Color.black, width: 1)
                 
-                ForEach(calendarData, id: \.date) { item in
+                ForEach(dataSource.getCalendarData(), id: \.date) { item in
                     HStack(spacing: 0) {
                         Text(item.day)
                             .frame(width: 80)
@@ -111,6 +128,9 @@ struct calendarScreenView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .border(Color.black, width: 1)
+                    .onTapGesture {
+                        delegate?.didSelectDate(date: item.date) // Delegate Action
+                    }
                 }
             }
             .padding()
@@ -120,9 +140,14 @@ struct calendarScreenView: View {
     }
 }
 
-struct CalendarScreenView_Previews: PreviewProvider {
-    static var previews: some View {
-        calendarScreenView()
+class CalendarHandler: CalendarDelegate {
+    func didSelectDate(date: String) {
+        print("User selected date: \(date)")
     }
 }
 
+struct CalendarScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        calendarScreenView(dataSource: CalendarManager(), delegate: CalendarHandler())
+    }
+}
