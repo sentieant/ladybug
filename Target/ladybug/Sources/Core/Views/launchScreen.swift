@@ -1,7 +1,10 @@
 import SwiftUI
 
 struct launchScreenView: View {
-   
+    @EnvironmentObject var EventCollection: eventCollection
+    @State private var dateSelected: DateComponents?
+    @State private var displayEvents = false
+    @State private var formType: eventType?
     @State private var isBlinking: Bool = false
     var body: some View {
             NavigationView {
@@ -14,8 +17,8 @@ struct launchScreenView: View {
                         .shadow(radius: 15)
                         .padding()
                         .font(.custom("Lobster-Regular", size: 30))
-                    //NavigationLink(destination: calendarScreenView())
-                    NavigationLink(destination: calendarScreenView(dataSource: CalendarManager(), delegate: CalendarHandler())){
+                    // NavigationLink(destination: calendarScreenView(dataSource: CalendarManager(), delegate: CalendarHandler()))
+                    NavigationLink(destination: eventStartScreenView()){
                             Text("Let's be organised!")
                         }
                     .opacity(isBlinking ? 0.1 : 1.2)

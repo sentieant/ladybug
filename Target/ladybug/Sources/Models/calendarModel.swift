@@ -1,4 +1,4 @@
-import SwiftUI
+/* import SwiftUI
 
 let monthsAndDays: [String: Int] = [
     "January": 31,
@@ -27,4 +27,5 @@ let months: [monthInCalendar] = monthsAndDays.map {
         days: $0.value
     )
 }
+*/
 
